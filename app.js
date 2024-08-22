@@ -5,6 +5,8 @@ const ejsMate = require("ejs-mate")
 const productsData = require("./productsData/productsData.json")
 const featuredProduct = require("./productsData/featuredProducts.json")
 
+const port = 3000
+
 app.use(express.static(path.join(__dirname, "assets")))
 
 app.engine("ejs", ejsMate)
@@ -63,6 +65,6 @@ app.get("/products/:type/:productId", (req, res) => {
   res.render("pages/singleProduct", { type, productId, product, productsData })
 })
 
-app.listen(3000, () => {
-    console.log("Serving on port 3000!!")
+app.listen(process.env.PORT || port, () => {
+    console.log(`Serving on port ${port}!!`)
 })
